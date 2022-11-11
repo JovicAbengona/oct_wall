@@ -1,0 +1,31 @@
+<form id="signup_form" action="/users/create_user" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <h1>Create an account</h1>
+    <p>Already have an account? <a href="/signin">Sign in</a> instead</p>
+    <div>
+        <label for="first_name">First Name: </label>
+        <input type="text" id="first_name" name="first_name">
+        <p class="error_message" hidden></p>
+    </div>
+    <div>
+        <label for="last_name">Last Name: </label>
+        <input type="text" id="last_name" name="last_name">
+        <p class="error_message" hidden></p>
+    </div>
+    <div>
+        <label for="email">Email: </label>
+        <input type="text" id="email" name="email">
+        <p class="error_message" hidden></p>
+    </div>
+    <div>
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="password">
+        <p class="error_message" hidden></p>
+    </div>
+    <div>
+        <label for="confirm_password">Confirm Password: </label>
+        <input type="password" id="confirm_password" name="confirm_password">
+        <p class="error_message" hidden></p>
+    </div>
+    <button type="submit">Sign Up</button>
+</form>

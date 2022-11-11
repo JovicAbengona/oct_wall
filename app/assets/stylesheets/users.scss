@@ -1,0 +1,22 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form div {
+    margin: 10px 0;
+}
+
+form input {
+    display: block;
+}
+
+form .error_message {
+    color: rgb(219, 87, 54);
+    font-style: italic;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
