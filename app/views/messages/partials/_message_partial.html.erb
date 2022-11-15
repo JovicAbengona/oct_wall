@@ -1,0 +1,16 @@
+<div id="message_<%= message["message_id"] %>">
+    <h3><%= "#{message["first_name"]} #{message["last_name"]}" %> | <%= message["updated_at"].strftime("%b %e, %Y %I:%M %P") %></h3>
+    <p><%= message["content"] %></p>
+    <% if session["id"].to_i === message["user_id"].to_i %>
+        <button class="delete_message" data-message_id=<%= message["message_id"] %>>DELETE</button>
+    <% end %>
+
+    <h4>Comments</h4>
+    <div id="message_<%= message["message_id"] %>_comments" class="message_comments">
+        <h3>No Comments</h3>
+    </div>
+
+    <label for="message_<%= message["message_id"] %>_comment_content">Leave a comment</label>
+    <textarea id="message_<%= message["message_id"] %>_comment_content" class="message_comment" rows="5"></textarea>
+    <button type="button" class="create_comment" data-message_id=<%= message["message_id"] %>>Submit</button>
+</div>
