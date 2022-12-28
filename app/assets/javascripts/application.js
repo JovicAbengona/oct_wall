@@ -14,14 +14,6 @@ $(document).ready(function(){
 
         /* Sign in Feature */
         .on("submit", "#signin_form", submitSigninForm)
-
-        /* Messages Feature */
-        .on("submit", "#create_message", submitCreateMessageForm)
-        .on("click", ".delete_message", submitDeleteMessageForm)
-        
-        /* Comments Feature */
-        .on("click", ".create_comment", submitCreateCommentForm)
-        .on("click", ".delete_comment", submitDeleteCommentForm)
 });
 
 /* This function hides error messages */
@@ -65,84 +57,4 @@ function submitSigninForm(){
     }, "json");
 
     return false;
-}
-
-function submitCreateMessageForm(){
-    $.post($(this).attr("action"), $(this).serialize(), function(response_data){
-        if(response_data.status){
-            $("#messages_html").prepend(response_data.result.message_html);
-        }
-        else{
-            alert(response_data.error);
-        }
-
-        $("#create_message")[0].reset();
-    });
-
-    return false
-}
-
-function submitDeleteMessageForm(){
-    if(confirm("Are you sure you want to delete this message?")){
-        /* Update message_id value of form */
-        $('#delete_message input[name="message_id"]').val($(this).data("message_id"));
-
-        $.post($("#delete_message").attr("action"), $("#delete_message").serialize(), function(response_data){
-            if(response_data.status){
-                alert("Message deleted");
-                $(`#message_${response_data.result.message_id}`).remove();
-            }
-            else{
-                alert(response_data.error);
-            }
-        });
-
-        return false
-    }
-}
-
-function submitCreateCommentForm(){
-    const create_comment_form = $("#create_comment");
-    const message_id          = $(this).data("message_id");
-
-    /* Update message_id value of form */
-    $('#create_comment input[name="message_id"').val(message_id);
-    $('#create_comment input[name="content"]').val($(`#message_${message_id}_comment_content`).val());
-
-    $.post(create_comment_form.attr("action"), create_comment_form.serialize(), function(response_data){
-        if(response_data.status){
-            if($(`#message_${message_id}_comments .no_comments_msg`).length){
-                $(`#message_${message_id}_comments`).html(response_data.result.comment_html);
-            }
-            else {
-                $(`#message_${message_id}_comments`).append(response_data.result.comment_html);
-            }
-        }
-        else{
-            alert(response_data.error);
-        }
-    });
-
-    $(".message_comment").val("");
-
-    return false
-}
-
-function submitDeleteCommentForm(){
-    if(confirm("Are you sure you want to delete this comment?")){
-        /* Update comment value of form */
-        $('#delete_comment input[name="comment_id"]').val($(this).data("comment_id"));
-
-        $.post($("#delete_comment").attr("action"), $("#delete_comment").serialize(), function(response_data){
-            if(response_data.status){
-                alert("Comment deleted");
-                $(`#comment_${response_data.result.comment_id}`).remove();
-            }
-            else{
-                alert(response_data.error);
-            }
-        });
-
-        return false
-    }
 }

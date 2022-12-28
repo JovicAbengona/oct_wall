@@ -12,18 +12,4 @@ Rails.application.routes.draw do
     post "/create_user" => "users#create_user"
     post "/get_user"    => "users#get_user"
   end
-
-  # Messages Routes
-  scope "/messages" do
-    get "/" => "messages#index"
-
-    post "/create_message" => "messages#create_message"
-    post "/delete_message" => "messages#delete_message"
-  end
-
-  # Comments Routes
-  scope "/comments" do
-    post "/create_comment" => "comments#create_comment"
-    post "/delete_comment" => "comments#delete_comment"
-  end
 end
