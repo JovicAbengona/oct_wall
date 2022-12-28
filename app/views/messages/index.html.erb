@@ -1,7 +1,7 @@
 <form id="create_message" action="/messages/create_message" method="POST">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <label for="create_message_content">Create a message: </label>
-    <textarea id="create_message_content" name="content" rows="8"></textarea>
+    <textarea id="create_message_content" name="content" rows="8" autofocus></textarea>
     <button type="submit">Submit</button>
 </form>
 

@@ -75,6 +75,8 @@ function submitCreateMessageForm(){
         else{
             alert(response_data.error);
         }
+
+        $("#create_message")[0].reset();
     });
 
     return false
@@ -109,12 +111,19 @@ function submitCreateCommentForm(){
 
     $.post(create_comment_form.attr("action"), create_comment_form.serialize(), function(response_data){
         if(response_data.status){
-            $(`#message_${message_id}_comments`).append(response_data.result.comment_html);
+            if($(`#message_${message_id}_comments .no_comments_msg`).length){
+                $(`#message_${message_id}_comments`).html(response_data.result.comment_html);
+            }
+            else {
+                $(`#message_${message_id}_comments`).append(response_data.result.comment_html);
+            }
         }
         else{
             alert(response_data.error);
         }
     });
+
+    $(".message_comment").val("");
 
     return false
 }

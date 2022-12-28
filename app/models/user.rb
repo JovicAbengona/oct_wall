@@ -5,7 +5,7 @@ class User < ApplicationRecord
         begin
             # Do further validation for first_name and last_name
             ["first_name", "last_name"].each do |form_field|
-                response_data[:errors][form_field] = "must not contain a number or special character" if params[form_field] =~ /[^a-zA-Z']/
+                response_data[:errors][form_field] = "must not contain a number or special character" if params[form_field] =~ /[^a-zA-Z'\s]/
             end
 
             # Do further validation for email

@@ -6,9 +6,6 @@ class MessagesController < ApplicationController
     # Homepage. Display all messages
     def index
         @messages = Message.get_messages()[:result]
-        get_comments = Comment.get_comments()[:result][0]["comments"]
-
-        @comments = JSON.parse(get_comments);
     end
 
     # Create message
