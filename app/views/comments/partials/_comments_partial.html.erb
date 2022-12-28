@@ -1,0 +1,9 @@
+<% comments.each do |comment| %>
+    <div id="comment_<%= comment['comment_id'] %>">
+        <h3><%= "#{comment['first_name']} #{comment['last_name']}" %> • <%= DateTime.parse(comment['updated_at']).strftime("%b %e, %Y %I:%M %P") %></h3>
+        <p class="comment_content"><%= comment['content'] %></p>
+        <% if session['id'].to_i === comment['user_id'].to_i  %>
+            <button type="button" class="delete_comment" data-comment_id=<%= comment['comment_id'] %>>DELETE</button>
+        <% end %>
+    </div>
+<% end %>
