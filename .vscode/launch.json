@@ -12,6 +12,17 @@
             "args": [
                 "server"
             ]
-        }
+        },
+        {
+            "name": "Attach to Docker",
+            "type": "Ruby",
+            // the app debug server is already running...
+            // we will attach (connect) the debug client on it:
+            "request": "attach",
+            "remotePort": "3002",
+            "remoteHost": "localhost",
+            "remoteWorkspaceRoot": "./",
+            "cwd": "${workspaceRoot}",
+        },
     ]
 }

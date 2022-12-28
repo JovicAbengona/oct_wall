@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  the_wall_dec:
+    build: ./
+    # command: bundle exec rdebug-ide --debug --host 0.0.0.0 --port 3002 -- bin/rails server -e local -p 3000 -b 0.0.0.0
+    command: bundle exec rails server -e local -p 3000 -b 0.0.0.0
+    environment:
+      RAILS_ENV: "${RAILS_ENV}"
+    volumes:
+      - "./:/app"
+    ports:
+      - "3001:3000"
+      # - "3002:3002"
+    stdin_open: true
+    tty: true
